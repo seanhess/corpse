@@ -18,13 +18,29 @@ function newBody(){
 	}
 	console.log("edges", edges)
 
+}
 
-	//newHead
-	//newTorso
-	//newHips
-
+function newHead (neckConnectorsArray) {
 
 
+	return {
+			name: "head",
+			started: new Date(),
+			posts: [
+				{connectionId: 1,
+
+				}
+			],
+		} 
+	}
+}
+
+function generatePost(connectionId, x, y){
+	return {
+		connectionId:connectionId,
+		x:x,
+		y:y
+	}
 }
 
 function newEdgeConnectors(edgeLength, numPoints){
