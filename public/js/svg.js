@@ -40,11 +40,11 @@ HARMONS.corpse = HARMONS.corpse || ( function () {
         line.attr( 'path', line.attr('path') + 'L' + (e.pageX) + ',' + (event.pageY) );
       }
 
-      return {
-        '$canvas': $canvas,
-        'mousedownHandler': mousedownHandler,
-        'mousedownHandler': mousedownHandler
-      };
+  return {
+    '$canvas': $canvas,
+    'mousedownHandler': mousedownHandler,
+    'mousedownHandler': mousedownHandler
+  };
 }());
 
 HARMONS.corpse.$canvas.on( 'mousedown', HARMONS.corpse.mousedownHandler );
