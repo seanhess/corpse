@@ -3,6 +3,7 @@ var HARMONS = HARMONS || {};
 HARMONS.corpse = HARMONS.corpse || (function () {
 
   function drawer($canvas, scaleFactor) {
+    var $document = $(document)
     var paths = [],
         paper = Snap($canvas.get(0)),
         clicking = false,
@@ -30,9 +31,9 @@ HARMONS.corpse = HARMONS.corpse || (function () {
         },
         enableEvents = function () {
           $canvas.bind('mousemove.mmu', mousemoveHandler);
-          $canvas.one('mouseup.mmu', mouseupHandler);
+          $document.one('mouseup.mmu', mouseupHandler);
           $canvas.bind('touchmove.mmu', mousemoveHandler);
-          $canvas.one('touchend.mmu', mouseupHandler);
+          $document.one('touchend.mmu', mouseupHandler);
         },
         drawFreeLineBegin = function (e) {
           clicking = true;

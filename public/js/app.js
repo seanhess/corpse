@@ -19,7 +19,7 @@ $(function() {
 
 function init() {
     // connect to shared object at url
-    game = SharedObject("/game/test4")
+    game = SharedObject("/game/test5")
     // game.startPoll()
     game.onUpdate(function(value) {
     	chicken()
