@@ -18,7 +18,7 @@
 	function chicken(){
 	for (var bodyPart in corpse){
 		var started = corpse[bodyPart].started
-		var completed = true
+		var completed = corpse[bodyPart].completed
 		if (completed) $("#" + bodyPart).addClass("completed")
 		else if (started) $("#" + bodyPart).addClass("started")
 		else $("." + bodyPart).addClass("not")
