@@ -8,16 +8,15 @@ function init() {
     console.log("-init", game)
     // connect to shared object at url
     var game = SharedObject("/game/test")
-    game.startPoll()
+    // game.startPoll()
     game.onUpdate(function(value) {
-        console.log("UPDATED", value)
         renderDebugGame(game) // value should work too
     })
     return game
 }
 
 
-function test() {
+function testClick() {
     console.log("TEST")
     game.asdf = Math.random()
     game.commit()

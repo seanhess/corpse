@@ -24,7 +24,13 @@ function SharedObject(endpoint) {
     }
 
     function commit() {
-        $.put(endpoint, sharedObject)
+        $.ajax({
+            url: endpoint,
+            type: "PUT",
+            success: function(data) {
+                sharedObjectDidUpdate(sharedObject, data)
+            },
+        })
     }
 
     function load() {
@@ -49,10 +55,14 @@ function SharedObject(endpoint) {
 
 function sharedObjectLoad(object) {
     $.get(object.endpoint, function(data) {
-        _.merge(object, data)
-        if (object._updateHandler)
-            object._updateHandler(object)
+        sharedObjectDidUpdate(object, data)
     })
+}
+
+function sharedObjectDidUpdate(object, data) {
+    _.merge(object, data)
+    if (object._updateHandler)
+        object._updateHandler(object)
 }
 
 /*
