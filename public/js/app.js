@@ -25,5 +25,3 @@ function testClick() {
 function renderDebugGame(game) {
     $("#test").text(JSON.stringify(game))
 }
-
-
