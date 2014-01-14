@@ -7,10 +7,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    servers: {
+      dest: '~/corpse',
+      dev: 'dev.orbit.al',
+      user: 'root',
+    },
 
     exec: {
       npm: { cmd: 'npm install' },
       bower: { cmd: 'node_modules/.bin/bower install'},
+      deploy: { cmd: 'ssh -t <%= servers.user %>@<%= servers.dev %> "cd <%= servers.dest %> && bash config/deploy.sh"'},
     },
 
     bower_concat: {
@@ -75,6 +81,24 @@ module.exports = function(grunt) {
         ],
         dest: 'public/dist/app.js',
       }
+    },
+
+
+    rsync: {
+      options: {
+        args: ["--verbose"],
+        // exclude: [".git*","*.less","node_modules"],
+        exclude: [".git*","*.less"],
+        recursive: true
+      },
+
+      dev: {
+        options: {
+          host: "<%= servers.user %>@<%= servers.dev %>",
+          src: ".",
+          dest: "<%= servers.dest %>",
+        }
+      },
     }
 
   });
@@ -85,7 +109,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-develop');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-rsync');
 
+  grunt.registerTask('deploy', ['rsync', 'exec:deploy'])
   grunt.registerTask('install', ['exec:npm', 'exec:bower'])
 
   grunt.registerTask('default', ['install', 'bower_concat', 'less', 'concat', 'develop', 'watch']);
