@@ -87,8 +87,8 @@ module.exports = function(grunt) {
     rsync: {
       options: {
         args: ["--verbose"],
-        // exclude: [".git*","*.less","node_modules"],
-        exclude: [".git*","*.less"],
+        exclude: [".git*","*.less","node_modules"],
+        // exclude: [".git*","*.less"],
         recursive: true
       },
 
