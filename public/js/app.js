@@ -17,7 +17,7 @@ function init() {
 
 
 function testClick() {
-    game.value.asdf = Math.random()
+    game.asdf = Math.random()
     game.commit()
 }
 

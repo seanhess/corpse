@@ -1,8 +1,10 @@
 // gets the beginning value, and goes from there
 function SharedObject(endpoint) {
 
+    // Object.create it, so that it is on the prototype and doesn't get called
+
     // you can't name any properties these things :)
-    var sharedObject = {
+    var prototype = {
         onUpdate: onUpdate,
         commit: commit,
         endpoint: endpoint,
@@ -11,21 +13,24 @@ function SharedObject(endpoint) {
         stopPoll: stopPoll,
         _updateHandler: null,
         _poll: null,
-        value: {},
     }
+
+    // you can set properties driectly on this object
+    var sharedObject = Object.create(prototype)
 
     load()
 
     function onUpdate(f) {
-        sharedObject._updateHandler = f
+        prototype._updateHandler = f
     }
 
     function commit() {
-        // need to take off our custom methods
+        // clone strips off the prototyp methods and stuff so it's just the data
+        var clone = _.clone(sharedObject)
         $.ajax({
             url: endpoint,
             type: "PUT",
-            data: sharedObject.value,
+            data: clone,
             success: function(data) {
                 sharedObjectDidUpdate(sharedObject, data)
             },
@@ -37,14 +42,14 @@ function SharedObject(endpoint) {
     }
 
     function startPoll() {
-        sharedObject._poll = setInterval(function() {
+        prototype._poll = setInterval(function() {
             load()
         }, 1000)
     }
 
     function stopPoll() {
-        clearInterval(sharedObject._poll)
-        sharedObject._poll = null
+        clearInterval(prototype._poll)
+        prototype._poll = null
     }
 
     // get the initial value, the fire the update
@@ -58,9 +63,9 @@ function sharedObjectLoad(object) {
 }
 
 function sharedObjectDidUpdate(object, data) {
-    _.merge(object.value, data)
+    _.merge(object, data)
     if (object._updateHandler)
-        object._updateHandler(object.value)
+        object._updateHandler(object)
 }
 
 /*

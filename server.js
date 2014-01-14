@@ -11,7 +11,6 @@ var games = {}
 // returns a "shared object" for the game
 app.get("/game/:id", function(req, res) {
     var game = getGame(req.params.id)
-    console.log("GAME", game)
     res.send(game.value)
 })
 
