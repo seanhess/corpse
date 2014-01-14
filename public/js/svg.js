@@ -1,8 +1,8 @@
 var HARMONS = HARMONS || {};
 
 HARMONS.corpse = HARMONS.corpse || ( function () {
-  var $canvas = $("#canvas"),
-      paper = Snap("#canvas"),
+  var $canvas = $("#svg"),
+      paper = Snap("#svg"),
       clicking = false,
       line,
       pathArray = [],
