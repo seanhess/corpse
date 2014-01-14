@@ -35,7 +35,13 @@ module.exports = function(grunt) {
         files: ['public/index.html', 'public/css/*.css'],
         // tasks: ['concat'],
         options: { livereload: true },
+      },
+      server: {
+        files: ['server.js'],
+        tasks: ['develop'],
+        options: { livereload: true},
       }
+
     },
 
     develop: {
