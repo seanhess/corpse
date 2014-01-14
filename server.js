@@ -10,27 +10,39 @@ var games = {}
 
 // returns a "shared object" for the game
 app.get("/game/:id", function(req, res) {
-    var id = req.params.id
-    if (!games[id])
-        games[id] = newGame()
-    res.send(games[id])
+    var game = getGame(req.params.id)
+    console.log("GAME", game)
+    res.send(game.value)
 })
 
 app.put("/game/:id", function(req, res) {
-    // does it just copy it in?
-    var game = games[req.params.id]
-    if (!game) game = newGame()
-    _.merge(game, req.body)
-    res.send(game)
+    var game = getGame(req.params.id)
+    game.update(req.body)
+    res.send(game.value)
 })
 
 function SharedObject() {
-    var value = {}
-    return value
+
+    var sharedObject = {
+        value: {},
+        update: function(data) {
+            _.merge(sharedObject.value, data)
+        }
+    }
+
+    return sharedObject
 }
 
-function newGame() {
-    var game = {created: new Date()}
+function getGame(id) {
+    if (!games[id])
+        games[id] = newGame(id)
+    return games[id]
+}
+
+function newGame(id) {
+    var game = SharedObject()
+    game.value.id = id
+    game.value.created = new Date()
     return game
 }
 

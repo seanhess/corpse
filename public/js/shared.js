@@ -1,9 +1,5 @@
 // gets the beginning value, and goes from there
 function SharedObject(endpoint) {
-    // 1 get the initial value from the server
-    // 2 poll for updates
-    // commit method
-    // add onUpdated method
 
     // you can't name any properties these things :)
     var sharedObject = {
@@ -15,6 +11,7 @@ function SharedObject(endpoint) {
         stopPoll: stopPoll,
         _updateHandler: null,
         _poll: null,
+        value: {},
     }
 
     load()
@@ -24,9 +21,11 @@ function SharedObject(endpoint) {
     }
 
     function commit() {
+        // need to take off our custom methods
         $.ajax({
             url: endpoint,
             type: "PUT",
+            data: sharedObject.value,
             success: function(data) {
                 sharedObjectDidUpdate(sharedObject, data)
             },
@@ -52,7 +51,6 @@ function SharedObject(endpoint) {
     return sharedObject
 }
 
-
 function sharedObjectLoad(object) {
     $.get(object.endpoint, function(data) {
         sharedObjectDidUpdate(object, data)
@@ -60,9 +58,9 @@ function sharedObjectLoad(object) {
 }
 
 function sharedObjectDidUpdate(object, data) {
-    _.merge(object, data)
+    _.merge(object.value, data)
     if (object._updateHandler)
-        object._updateHandler(object)
+        object._updateHandler(object.value)
 }
 
 /*
