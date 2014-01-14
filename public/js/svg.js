@@ -2,7 +2,7 @@ var HARMONS = HARMONS || {};
 
 HARMONS.corpse = HARMONS.corpse || (function () {
 
-  function drawer($canvas, scaleFactor) {
+  function drawer($canvas, scaleFactor, drawDisabled) {
     var $document = $(document)
     var paths = [],
         paper = Snap($canvas.get(0)),
@@ -66,8 +66,10 @@ HARMONS.corpse = HARMONS.corpse || (function () {
             .attr( 'transform', 'scale('+scaleFactor+', '+scaleFactor+')')
         };
 
-    $canvas.on( 'mousedown', mousedownHandler );
-    $('body').on( 'touchstart', mousedownHandler );
+    if (!drawDisabled) {
+      $canvas.on( 'mousedown', mousedownHandler );
+      $('body').on( 'touchstart', mousedownHandler );
+    }
 
     return {
       'setPaths': setPaths

@@ -92,7 +92,7 @@ function renderBodyParts(game) {
 
 function renderBodyPart(bodyPart) {
     var $svg = $("#"+bodyPart.name).find('svg')
-    var svg = HARMONS.corpse.drawer($svg, 1/DRAWING_SCALE_FACTOR)
+    var svg = HARMONS.corpse.drawer($svg, 1/DRAWING_SCALE_FACTOR, true)
     if (bodyPart.complete) {
         // show it
         svg.setPaths(bodyPart.paths)
