@@ -1,3 +1,5 @@
+@import "../../bower_components/bootstrap/less/bootstrap";
+
 #canvas {
   width: 100%;
   height: 100%;
@@ -17,7 +19,7 @@
   width:200px;
 }
 
-.corpse-contain {
+.corpse {
   position: relative;
   /* total width =  6 x 200px [the grid unit] */
   width: 600px;
@@ -25,7 +27,16 @@
   margin: 0 auto;
 }
 
-.corpse-part-contain {
+.modal {
+  width: 500px;
+  height: 500px;
+  border: 1px solid #000;
+  position: absolute;
+  top: 100px;
+  left: 200px;
+}
+
+.corpse-part {
   width: 200px;
   height: 100px;
   position: relative;
@@ -33,7 +44,7 @@
   background:red;
 }
 
-.corpse-part-contain.leg1, .corpse-part-contain.leg2  {
+.corpse-part.leg1, .corpse-part.leg2  {
   width: 100px;
   height: 200px;
 }
