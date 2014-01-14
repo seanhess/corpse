@@ -12,7 +12,7 @@ function SharedCollection() {
 
 /*
 DATA MODEL
-game
+game:
     pieces: {
         head:  Piece,
         torso: Piece,
@@ -25,8 +25,25 @@ game
         rightFoot: Piece,
     }
 
-piece: {
-    data: ??? 
+Piece = {
+    name: string;
+    started: Date;
+    posts: [Post]
+    data: ....:
 }
+
+Post = {
+    connectionId: number: 1,2,3,4
+    x: 0-1 
+    y: 0-1
+}
+
+function isComplete(game)
+
+var game = SharedObject("asdf", {})
+
+game.on("update", function(game) {
+    // re-render everything 
+})
 
 */
