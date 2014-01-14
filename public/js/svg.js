@@ -9,14 +9,14 @@ HARMONS.corpse = HARMONS.corpse || ( function () {
       mousedownHandler = function (e) {
         clicking = true;
         if ( e.type === 'touchstart' ) {
-          e.preDefault();
+          e.preventDefault();
           e = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
         }
         drawFreeLineBegin(e);
       },
       mousemoveHandler = function (e) {
         if ( e.type === 'touchmove' ) {
-          e.preDefault();
+          e.preventDefault();
           e = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
         }
         drawFreeLineMove(e);
