@@ -4,6 +4,7 @@ console.log("APP LOADED", $)
 
 var game = null
 var svg = null
+var currentCard = null
 
 $(function() {
     init()
@@ -28,6 +29,21 @@ function init() {
     })
 
     return game
+}
+
+function drawCard() {
+    currentCard = findEmptyCard(game)
+    currentCard.started = new Date()
+    console.log("CARD", currentCard)
+    game.commit()
+}
+
+function findEmptyCard(game) {
+    for (var bodyPartName in game.corpse) {
+        if (game.corpse[bodyPartName].started == null)
+            return game.corpse[bodyPartName]
+    }
+    return null
 }
 
 
