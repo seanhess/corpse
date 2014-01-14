@@ -5,7 +5,6 @@ HARMONS.corpse = HARMONS.corpse || ( function () {
       paper = Snap("#svg"),
       clicking = false,
       line,
-      pathArray = [],
       mousedownHandler = function (e) {
         clicking = true;
         if ( e.type === 'touchstart' ) {
@@ -33,11 +32,10 @@ HARMONS.corpse = HARMONS.corpse || ( function () {
       drawFreeLineBegin = function (e) {
         clicking = true;
         line = paper.path( 'M' + (e.pageX) + ',' + (e.pageY) ).attr( { 'stroke': '#808080', 'stroke-width': 3, 'fill': 'none' } );
-        pathArray = line.attr('path');
         enableEvents();
       },
       drawFreeLineMove = function (e) {
-        if (!clicking) return;
+        if ( !clicking ) return;
 
         line.attr( 'path', line.attr('path') + 'L' + (e.pageX) + ',' + (event.pageY) );
       }
