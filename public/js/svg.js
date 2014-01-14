@@ -2,7 +2,7 @@ var HARMONS = HARMONS || {};
 
 HARMONS.corpse = HARMONS.corpse || (function () {
 
-  function drawer($canvas) {
+  function drawer($canvas, scaleFactor) {
     var paths = [],
         paper = Snap($canvas.get(0)),
         clicking = false,
@@ -36,12 +36,14 @@ HARMONS.corpse = HARMONS.corpse || (function () {
         },
         drawFreeLineBegin = function (e) {
           clicking = true;
-          line = newPath('M' + (e.pageX) + ',' + (e.pageY) )
+          var offset = $canvas.offset()
+          line = newPath('M' + (e.pageX-offset.left) + ',' + (e.pageY-offset.top) )
           enableEvents();
         },
         drawFreeLineMove = function (e) {
           if ( !clicking ) return;
-          line.attr( 'path', line.attr('path') + 'L' + (e.pageX) + ',' + (event.pageY) );
+          var offset = $canvas.offset()
+          line.attr( 'path', line.attr('path') + 'L' + (e.pageX-offset.left) + ',' + (e.pageY-offset.top) );
         },
         setPaths = function(newPaths) {
           paths = newPaths || []
@@ -57,7 +59,10 @@ HARMONS.corpse = HARMONS.corpse || (function () {
           })
         },
         newPath = function(data) {
-          return paper.path(data).attr( { 'stroke': '#808080', 'stroke-width': 3, 'fill': 'none' } );
+          return paper
+            .path(data)
+            .attr( { 'stroke': '#808080', 'stroke-width': 3, 'fill': 'none' } )
+            .attr( 'transform', 'scale('+scaleFactor+', '+scaleFactor+')')
         };
 
     $canvas.on( 'mousedown', mousedownHandler );

@@ -17,15 +17,15 @@
 
 
       <div class="corpse">
-        <div class="corpse-part head"></div>
-        <div class="corpse-part arm1 leftArm"></div>
-        <div class="corpse-part torso"></div>
-        <div class="corpse-part arm2 rightArm"></div>
-        <div class="corpse-part hips"></div>
-        <div class="corpse-part leg1 leftLeg"></div>
-        <div class="corpse-part leg2 rightLeg"></div>
-        <div class="corpse-part foot1 leftFoot"></div>
-        <div class="corpse-part foot2 rightFoot"></div>
+        <div id="head" class="corpse-part head"><svg></svg></div>
+        <div id="rightArm" class="corpse-part arm1"><svg></svg></div>
+        <div id="torso" class="corpse-part torso"><svg></svg></div>
+        <div id="leftArm" class="corpse-part arm2"><svg></svg></div>
+        <div id="hips" class="corpse-part hips"><svg></svg></div>
+        <div id="rightLeg" class="corpse-part leg1"><svg></svg></div>
+        <div id="leftLeg" class="corpse-part leg2"><svg></svg></div>
+        <div id="rightFoot" class="corpse-part foot1"><svg></svg></div>
+        <div id="leftFoot" class="corpse-part foot2"><svg></svg></div>
       </div>
 
       <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-drawing" onclick="drawCard()">
@@ -38,14 +38,14 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Draw your body part here</h4>
+              <h4 class="modal-title" id="myModalLabel">Draw a <span class="partName">XXX</span> here</h4>
             </div>
             <div class="modal-body">
-              <svg id="svg"></svg>
+              <svg></svg>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              <button type="button" class="btn btn-primary" onclick="saveCurrentCard()" data-dismiss="modal">Save changes</button>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
