@@ -16,6 +16,7 @@ function init() {
     game.onUpdate(function(value) {
         svg.setPaths(value.paths)
         renderDebugGame(value) // value should work too
+	chicken()
     })
 
     var $canvas = $("#svg")
