@@ -26,9 +26,14 @@ module.exports = function(grunt) {
     }, 
 
     watch: {
-      everything: {
-        files: ['public/js/*.js', 'public/lib/*.js', 'public/index.html', 'public/css/*.css'],
-        // tasks: ['bower_concat'],
+      js: {
+        files: ['public/js/*.js', 'public/lib/*.js'],
+        tasks: ['concat'],
+        options: { livereload: true },
+      },
+      reload: {
+        files: ['public/index.html', 'public/css/*.css'],
+        // tasks: ['concat'],
         options: { livereload: true },
       }
     },
@@ -63,6 +68,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('install', ['exec:npm', 'exec:bower'])
 
-  grunt.registerTask('default', ['install', 'bower_concat', 'develop', 'watch']);
+  grunt.registerTask('default', ['install', 'bower_concat', 'concat', 'develop', 'watch']);
 
 };
