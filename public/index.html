@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="dist/main.css">
   </head>
   <body>
+      <div class="drawing-modal">
+        <svg id="svg"></svg>
+      </div>
+      <div><button onclick="clearPaths()">Clear</button></div>
+
 
       <div class="corpse-contain">
         <div class="corpse-part head"></div>
@@ -20,14 +25,6 @@
         <div class="corpse-part foot1"></div>
         <div class="corpse-part foot2"></div>
       </div>
-
-      <div class="drawing-modal">
-        <svg id="svg"></svg>
-      </div>
-
-
-      <div><pre id="test"></pre></div>
-      <button onclick="testClick()">Test</button>
 
       <script src="dist/bower.js"></script>
       <script src="lib/snap.svg.js"></script>

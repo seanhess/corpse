@@ -8,6 +8,10 @@ app.use(express.bodyParser())
 
 var games = {}
 
+app.get("/test", function(req, res) {
+    res.send("Hello World")
+})
+
 // returns a "shared object" for the game
 app.get("/game/:id", function(req, res) {
     var game = getGame(req.params.id)
@@ -25,7 +29,7 @@ function SharedObject() {
     var sharedObject = {
         value: {},
         update: function(data) {
-            _.merge(sharedObject.value, data)
+            _.extend(sharedObject.value, data)
         }
     }
 

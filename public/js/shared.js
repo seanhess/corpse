@@ -30,7 +30,8 @@ function SharedObject(endpoint) {
         $.ajax({
             url: endpoint,
             type: "PUT",
-            data: clone,
+            data: JSON.stringify(clone),
+            contentType: "application/json",
             success: function(data) {
                 sharedObjectDidUpdate(sharedObject, data)
             },
@@ -63,7 +64,7 @@ function sharedObjectLoad(object) {
 }
 
 function sharedObjectDidUpdate(object, data) {
-    _.merge(object, data)
+    _.extend(object, data)
     if (object._updateHandler)
         object._updateHandler(object)
 }
