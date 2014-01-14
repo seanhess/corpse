@@ -35,6 +35,25 @@ module.exports = function(grunt) {
         files: ['public/index.html', 'public/css/*.css'],
         // tasks: ['concat'],
         options: { livereload: true },
+      },
+      server: {
+        files: ['server.js'],
+        tasks: ['develop'],
+        options: { livereload: true},
+      },
+      less: {
+        files: ['public/css/*.less'],
+        tasks: ['less'],
+        options: { livereload: true },
+      },
+
+    },
+
+    less: {
+      all: {
+        options: {},
+        // compile ALL less files found in css, and nested anywhere in app
+        files: { "public/dist/main.css" : ["public/css/*.less"]}
       }
     },
 
@@ -62,12 +81,13 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-develop');
   grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('install', ['exec:npm', 'exec:bower'])
 
-  grunt.registerTask('default', ['install', 'bower_concat', 'concat', 'develop', 'watch']);
+  grunt.registerTask('default', ['install', 'bower_concat', 'less', 'concat', 'develop', 'watch']);
 
 };

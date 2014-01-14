@@ -25,9 +25,9 @@ function newCorpse(){
 		leftFoot: newLeftFoot(200, 100, edges.leftAnkle),
 		rightFoot: newRightFoot(200, 100, edges.rightAnkle)
 
-
 	}
 }
+
 
 function newHead (width, height, neckConnectorsArray) {
 	var posts = [
