@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="dist/main.css">
   </head>
   <body>
+  <div><button onclick="clearPaths()">Clear</button></div>
+
       <div class="drawing-modal">
-        <svg id="svg"></svg>
-      </div>
-      <div><button onclick="clearPaths()">Clear</button></div>
+
 
       <div class="corpse">
         <div class="corpse-part head"></div>
@@ -25,14 +25,28 @@
         <div class="corpse-part foot2"></div>
       </div>
 
-      <div class="drawing-modal modal">
-        <svg id="svg"></svg>
-      </div>
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-drawing">
+         Join the game
+      </button>
 
-      <div class="join-game-modal modal">
-        <h3>Game in progress</h3>
-        <button class="btn">Join Game</button>
-      </div>
+      <!-- modal-drawing -->
+      <div class="modal fade" id="modal-drawing">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Draw your body part here</h4>
+            </div>
+            <div class="modal-body">
+              <svg id="svg"></svg>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
       <script src="dist/bower.js"></script>
       <script src="lib/snap.svg.js"></script>
