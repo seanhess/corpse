@@ -1,14 +1,18 @@
 
 // just an object
+
 function SharedObject() {
 
 }
 
-function SharedCollection() {
+// object.onUpdate(function(value) {
+// 
+// })
 
-}
+// object.commit(value)
 
-
+// just have a rest API and a poll?
+// in-memory
 
 /*
 DATA MODEL
