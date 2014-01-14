@@ -4,23 +4,13 @@
 // 	)
 	
 // });
-
-	var corpse;
-	
-	$.get(
-	"/game/test",
-	function(data) {
-		corpse = data.corpse;
-		return data.corpse;
-	}
-	)
-
-	function chicken(){
+function chicken(corpse) {
 	for (var bodyPart in corpse){
-		var started = corpse[bodyPart].started
-		var completed = corpse[bodyPart].completed
-		if (completed) $("#" + bodyPart).addClass("completed")
-		else if (started) $("#" + bodyPart).addClass("started")
-		else $("." + bodyPart).addClass("not")
-		}
+		var started = !!corpse[bodyPart].started
+		var completed = corpse[bodyPart].complete
+		console.log("CHECK", corpse[bodyPart])
+		$("#" + bodyPart).toggleClass("completed", completed)
+		$("#" + bodyPart).toggleClass("started", started)
+		// else $("." + bodyPart).addClass("not")
 	}
+}

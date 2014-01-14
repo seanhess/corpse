@@ -22,7 +22,7 @@ function init() {
     game = SharedObject("/game/test5")
     // game.startPoll()
     game.onUpdate(function(value) {
-    	chicken()
+    	chicken(game.corpse)
         renderBodyParts(value)
     })
 
