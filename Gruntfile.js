@@ -1,5 +1,9 @@
 module.exports = function(grunt) {
 
+  var env = process.env
+  env.NODE_ENV = 'development'
+  env.PORT = 3004
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -21,6 +25,16 @@ module.exports = function(grunt) {
         // tasks: ['bower_concat'],
         options: { livereload: true },
       }
+    },
+
+
+    develop: {
+      server: {
+        file: 'server.js',
+        nodeArgs: [],
+        args: [],
+        env: env,
+      } 
     }
 
   });
@@ -28,7 +42,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-concat');
+  grunt.loadNpmTasks('grunt-develop');
 
-  grunt.registerTask('default', ['bower_concat', 'watch']);
+  grunt.registerTask('default', ['bower_concat', 'develop', 'watch']);
 
 };
