@@ -43,7 +43,7 @@ module.exports = function(grunt) {
         options: { livereload: true },
       },
       server: {
-        files: ['server.js'],
+        files: ['server/*.js'],
         tasks: ['develop'],
         options: { livereload: true},
       },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 
     develop: {
       server: {
-        file: 'server.js',
+        file: 'server/server.js',
         nodeArgs: [],
         args: [],
         env: env,

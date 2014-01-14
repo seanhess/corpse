@@ -1,9 +1,18 @@
 //call newCorpse() to get back blank pieces for the game
-console.log(newCorpse())
+exports.newCorpse = newCorpse;
 
 function newCorpse(){
 	var screenShort = 1;  //the sizes of the individual canvases
 	var screenLong = 2;
+
+	function newBasicBodyPart(name){
+		return {
+			name: name,
+			paths: [],
+			started: null
+
+		}
+	}
 
 	var edges = {
 		neck : newEdgeConnectors(1, 2),
@@ -33,10 +42,9 @@ function newCorpse(){
 			generatePost(neckConnectorsArray[0], 0, "bottom", width, height),
 			generatePost(neckConnectorsArray[1], 1, "bottom", width, height)
 		]
-		return {
-			name: "head",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("head")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 
 	function newTorso (width, height, leftShoulderArray, rightShoulderArray, neckArray, waistArray) {
@@ -50,30 +58,27 @@ function newCorpse(){
 			generatePost(waistArray[0], 2, "bottom", width, height),
 			generatePost(waistArray[1], 3, "bottom", width, height),
 		]
-		return {
-			name: "torso",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("torso")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newLeftArm (width, height, leftShoulderArray){
 		var posts = [
 			generatePost(leftShoulderArray[0], 0, "right", width, height),
 			generatePost(leftShoulderArray[1], 0, "right", width, height),
 		]
-		return {
-			name: "leftArm",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("leftArm")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newRightArm (width, height, rightShoulderArray) {
 		var posts = [
 			generatePost(rightShoulderArray[0], 0, "left", width, height),
 			generatePost(rightShoulderArray[1], 0, "left", width, height),
 		]
-		return {
-			name: "rightArm",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("rightArm")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newHips (width, height, leftThighArray, rightThighArray, waistArray) {
 		var posts = [
@@ -85,10 +90,9 @@ function newCorpse(){
 			generatePost(rightThighArray[1], 2, "bottom", width, height, width/2, width)
 
 		]
-		return {
-			name: "waist",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("hips")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newLeftLeg (width, height, leftThighArray, leftAnkleArray){
 		var posts = [
@@ -97,10 +101,9 @@ function newCorpse(){
 			generatePost(leftAnkleArray[0], 0, "bottom", width, height),
 			generatePost(leftAnkleArray[1], 1, "bottom", width, height)
 		]
-		return {
-			name: "leftLeg",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("leftLeg")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newRightLeg (width, height, rightThighArray, rightAnkleArray){
 		var posts = [
@@ -109,30 +112,27 @@ function newCorpse(){
 			generatePost(rightAnkleArray[0], 0, "bottom", width, height),
 			generatePost(rightAnkleArray[1], 1, "bottom", width, height)
 		]
-		return {
-			name: "rightLeg",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("rightLeg")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newLeftFoot (width, height, leftAnkleArray){
 		var posts = [
 			generatePost(leftAnkleArray[0], 0, "top", width, height),
 			generatePost(leftAnkleArray[1], 0, "top", width, height)
 		]
-		return {
-			name: "leftFoot",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("leftFoot")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function newRightFoot (width, height, rightAnkleArray){
 		var posts = [
 			generatePost(rightAnkleArray[0], 0, "top", width, height),
 			generatePost(rightAnkleArray[1], 0, "top", width, height)
 		]
-		return {
-			name: "rightFoot",
-			posts: posts
-		} 
+		var bodyPart = newBasicBodyPart("rightFoot")
+		bodyPart.posts = posts;
+		return bodyPart;
 	}
 	function generatePost(percent, connectionId, edge, pieceXLength, pieceYLength, restrictionStart, restrictionEnd){
 

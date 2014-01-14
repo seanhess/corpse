@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express()
 var _ = require("lodash")
+var newCorpse = require('./generateCorpse').newCorpse
 
 app.use(express.static('public'))
 app.use(express.bodyParser())
@@ -46,6 +47,7 @@ function newGame(id) {
     var game = SharedObject()
     game.value.id = id
     game.value.created = new Date()
+    game.value.corpse = newCorpse();
     return game
 }
 
