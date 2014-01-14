@@ -3,8 +3,8 @@ var HARMONS = HARMONS || {};
 HARMONS.corpse = HARMONS.corpse || (function () {
 
   function drawer($canvas) {
-    var paths = []
-    var paper = Snap($canvas.get(0)),
+    var paths = [],
+        paper = Snap($canvas.get(0)),
         clicking = false,
         line,
         mousedownHandler = function (e) {
@@ -58,22 +58,16 @@ HARMONS.corpse = HARMONS.corpse || (function () {
         },
         newPath = function(data) {
           return paper.path(data).attr( { 'stroke': '#808080', 'stroke-width': 3, 'fill': 'none' } );
-        }
-
-
+        };
 
     $canvas.on( 'mousedown', mousedownHandler );
-    $canvas.on( 'touchstart', mousedownHandler );
+    $('body').on( 'touchstart', mousedownHandler );
 
     return {
-      '$canvas': $canvas,
-      'mousedownHandler': mousedownHandler,
-      'mousedownHandler': mousedownHandler,
-      'setPaths': setPaths,
+      'setPaths': setPaths
     };
-
   }
 
-  return {drawer:drawer}
+  return { drawer:drawer }
 }());
 
