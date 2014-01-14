@@ -27,12 +27,11 @@ module.exports = function(grunt) {
 
     watch: {
       everything: {
-        files: ['public/js/*.js', 'public/index.html', 'public/css/*.css'],
+        files: ['public/js/*.js', 'public/lib/*.js', 'public/index.html', 'public/css/*.css'],
         // tasks: ['bower_concat'],
         options: { livereload: true },
       }
     },
-
 
     develop: {
       server: {
@@ -41,6 +40,17 @@ module.exports = function(grunt) {
         args: [],
         env: env,
       } 
+    },
+
+    concat: {
+      options: { separator: ';' },
+      js: {
+        src: [
+          'public/js/*.js',
+          'public/lib/*.js',
+        ],
+        dest: 'public/dist/app.js',
+      }
     }
 
   });
