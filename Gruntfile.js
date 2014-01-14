@@ -7,6 +7,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+
+    exec: {
+      npm: { cmd: 'npm install' },
+      bower: { cmd: 'node_modules/.bin/bower install'},
+    },
+
     bower_concat: {
       all: {
         dest: 'public/dist/bower.js',
@@ -43,7 +49,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-develop');
+  grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('default', ['bower_concat', 'develop', 'watch']);
+  grunt.registerTask('install', ['exec:npm', 'exec:bower'])
+
+  grunt.registerTask('default', ['install', 'bower_concat', 'develop', 'watch']);
 
 };
