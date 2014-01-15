@@ -3,14 +3,12 @@
 #main {
   text-align: center;
   position: relative;
-  margin: 0px;
+  margin: 0;
 }
-
 .drawing-modal {
-  height:100px;
-  width:200px;
+  height: 100px;
+  width: 200px;
 }
-
 .corpse {
   position: relative;
   /* total width =  6 x 200px [the grid unit] */
@@ -18,19 +16,17 @@
   height: 600px;
   margin: 0 auto;
 }
-
 .corpse-part {
   width: 200px;
   height: 100px;
   position: relative;
   float: left;
 }
-
-.corpse-part.leg1, .corpse-part.leg2  {
+.corpse-part.leg1,
+.corpse-part.leg2  {
   width: 100px;
   height: 200px;
 }
-
 .head {
   margin-left: 200px;
   clear: both;
@@ -51,27 +47,23 @@
   clear: both;
 }
 .jumbotron {
-padding-right: 60px;
-padding-left: 60px;
+  padding-right: 60px;
+  padding-left: 60px;
 }
-
 .corpse-part.completed.started {
   border: none;
-  background-color:white;
+  background-color: white;
 }
 .corpse-part.started {
-  background-color:yellow;
+  background-color: yellow;
 }
-.corpse-part{
-  background-color:red;
+.corpse-part {
+  background-color: red;
 }
-
 #modal-drawing svg {
   border: solid 1px black;
+  cursor: pointer;
 }
-
-#modal-drawing .modal-body svg{
-    margin: 0px auto;
+#modal-drawing .modal-body svg {
+  margin: 0px auto;
 }
-
-
