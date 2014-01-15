@@ -2,9 +2,9 @@ var HARMONS = HARMONS || {};
 
 HARMONS.corpse = HARMONS.corpse || (function () {
 
-  function drawer($canvas, scaleFactor, drawDisabled) {
-    var $document = $(document)
-    var paths = [],
+  var drawer = function ($canvas, scaleFactor, drawDisabled) {
+    var $document = $(document),
+        paths = [],
         paper = Snap($canvas.get(0)),
         clicking = false,
         line,
@@ -66,16 +66,16 @@ HARMONS.corpse = HARMONS.corpse || (function () {
             .attr( 'transform', 'scale('+scaleFactor+', '+scaleFactor+')')
         };
 
-    if (!drawDisabled) {
+    if ( !drawDisabled ) {
       $canvas.on( 'mousedown', mousedownHandler );
       $('.modal-body').on( 'touchstart', mousedownHandler );
     }
-
     return {
       'setPaths': setPaths
     };
   }
-
-  return { drawer:drawer }
+  return {
+    'drawer': drawer
+  }
 }());
 
