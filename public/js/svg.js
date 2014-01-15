@@ -68,7 +68,7 @@ HARMONS.corpse = HARMONS.corpse || (function () {
 
     if (!drawDisabled) {
       $canvas.on( 'mousedown', mousedownHandler );
-      $('body').on( 'touchstart', mousedownHandler );
+      $('.modal-body').on( 'touchstart', mousedownHandler );
     }
 
     return {
