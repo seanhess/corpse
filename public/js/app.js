@@ -12,6 +12,8 @@ var $svg = null
 var $modal = null
 var $partName = null
 
+var endpoint = "/game/test"
+
 
 $(function() {
     init()
@@ -19,7 +21,7 @@ $(function() {
 
 function init() {
     // connect to shared object at url
-    game = SharedObject("/game/test5")
+    game = SharedObject(endpoint)
     // game.startPoll()
     game.onUpdate(function(value) {
     	chicken(game.corpse)
@@ -40,6 +42,11 @@ function init() {
     })
 
     return game
+}
+
+function resetGame() {
+    console.log("RESET GAME")
+    game.reset()
 }
 
 function drawCard() {

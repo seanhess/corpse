@@ -11,6 +11,7 @@ function SharedObject(endpoint) {
         load: load,
         startPoll: startPoll,
         stopPoll: stopPoll,
+        reset: reset,
         _updateHandler: null,
         _poll: null,
     }
@@ -32,6 +33,16 @@ function SharedObject(endpoint) {
             type: "PUT",
             data: JSON.stringify(clone),
             contentType: "application/json",
+            success: function(data) {
+                sharedObjectDidUpdate(sharedObject, data)
+            },
+        })
+    }
+
+    function reset() {
+        $.ajax({
+            url: endpoint,
+            type: "DELETE",
             success: function(data) {
                 sharedObjectDidUpdate(sharedObject, data)
             },

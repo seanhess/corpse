@@ -25,8 +25,13 @@ app.put("/game/:id", function(req, res) {
     res.send(game.value)
 })
 
-function SharedObject() {
+app.del("/game/:id", function(req, res) {
+    var id = req.params.id
+    games[id] = newGame(id)
+    res.send(games[id])
+})
 
+function SharedObject() {
     var sharedObject = {
         value: {},
         update: function(data) {
